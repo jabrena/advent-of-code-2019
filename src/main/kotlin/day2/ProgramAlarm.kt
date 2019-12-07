@@ -3,7 +3,6 @@ package day2
 import day2.ParserStates.SUM
 import day2.ParserStates.MULTIPLY
 import day2.ParserStates.HALT
-import day2.ParserStates.UNKNOWN
 import day2.ParserStates.Companion.fromInt
 
 /**
@@ -100,7 +99,7 @@ class ProgramAlarm {
                 positions[positions[start + 3]] = positions[positions[start + 1]] * positions[positions[start + 2]]
             }
             HALT -> return positions
-            UNKNOWN -> throw AssertionError("Unknown opcode")
+            else -> throw AssertionError("Unknown opcode")
         }
 
         return compute(positions, start + 4)
