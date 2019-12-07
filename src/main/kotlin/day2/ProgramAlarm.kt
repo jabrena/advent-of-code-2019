@@ -1,5 +1,8 @@
 package day2
 
+import day2.ProgramAlarm.ParserStates.*
+import day2.ProgramAlarm.ParserStates.Companion.fromInt
+
 /**
  * https://adventofcode.com/2019/day/2
  *
@@ -79,26 +82,36 @@ package day2
  */
 class ProgramAlarm {
 
+    enum class ParserStates(val opcode: Int) {
+        SUM(1),
+        MULTIPLY(2),
+        HALT(99),
+        UNKNOWN(-1);
+
+        companion object {
+            @JvmStatic
+            fun fromInt(status: Int): ParserStates =
+                    values().find { value -> value.opcode == status } ?: UNKNOWN
+        }
+    }
+
     private val FUEL_INPUT_FILE = "/day2/input.txt"
 
     val readInputFile = this::class.java.getResource(FUEL_INPUT_FILE).readText()
 
-    fun sum(a: Int, b: Int) = a + b
-    fun multiply(a: Int, b: Int) = a * b
-
     //Original idea from: Oliver Weiler
     tailrec fun compute(positions: MutableList<Int>, start: Int = 0): MutableList<Int> {
 
-        if (positions[start] == 99) return positions
-
-        //Move to ADT
-        val op = when(positions[start]) {
-            1 -> ::sum
-            2 -> ::multiply
-            else -> throw AssertionError("Unknown opcode")
+        when(fromInt(positions[start])) {
+            SUM -> {
+                positions[positions[start + 3]] = positions[positions[start + 1]] + positions[positions[start + 2]]
+            }
+            MULTIPLY -> {
+                positions[positions[start + 3]] = positions[positions[start + 1]] * positions[positions[start + 2]]
+            }
+            HALT -> return positions
+            UNKNOWN -> throw AssertionError("Unknown opcode")
         }
-
-        positions[positions[start + 3]] = op(positions[positions[start + 1]], positions[positions[start + 2]])
 
         return compute(positions, start + 4)
     }
@@ -106,7 +119,6 @@ class ProgramAlarm {
     fun getPosition0(): Int {
 
         val data = readInputFile
-                .trimEnd()
                 .split(",")
                 .map(String::toInt)
                 .mapIndexed { i, e ->
