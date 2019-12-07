@@ -1,6 +1,5 @@
-package Day1
+package day1
 
-import day1.RocketEquation
 import org.assertj.core.api.BDDAssertions.then
 import org.junit.jupiter.api.Test
 
