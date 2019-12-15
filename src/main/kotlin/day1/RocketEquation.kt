@@ -1,5 +1,7 @@
 package day1
 
+import kotlin.math.floor
+
 /**
  *
  * --- Day 1: The Tyranny of the Rocket Equation ---
@@ -32,7 +34,7 @@ class RocketEquation {
      * Specifically, to find the fuel required for a module,
      * take its mass, divide by three, round down, and subtract 2.
      */
-    val calculateFuel = { mass : Int -> mass / 3 - 2 }
+    val calculateFuel = { mass : Int -> (floor(mass / 3.0).toInt()) - 2 }
 
     /**
      * The Fuel Counter-Upper needs to know the total fuel requirement. To find it, individually calculate

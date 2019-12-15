@@ -90,6 +90,18 @@
 		</dependency>
 
 		<dependency>
+			<groupId>io.arrow-kt</groupId>
+			<artifactId>arrow-optics</artifactId>
+			<version>${arrow.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.arrow-kt</groupId>
+			<artifactId>arrow-fx</artifactId>
+			<version>${arrow.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>${junit.jupiter.version}</version>
@@ -125,7 +137,14 @@
 		<dependency>
 			<groupId>io.kotlintest</groupId>
 			<artifactId>kotlintest-runner-junit5</artifactId>
-			<version>3.1.0</version>
+			<version>3.3.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.kotlintest</groupId>
+			<artifactId>kotlintest-assertions-arrow</artifactId>
+			<version>3.3.2</version>
 			<scope>test</scope>
 		</dependency>
 

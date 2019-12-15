@@ -1,6 +1,7 @@
 package day2
 
 import org.assertj.core.api.BDDAssertions.then
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class ProgramAlarmTest {
@@ -26,6 +27,7 @@ class ProgramAlarmTest {
         then(program.getPosition0()).isEqualTo(3058646)
     }
 
+    @Disabled
     @Test
     fun getPairTest() {
 
